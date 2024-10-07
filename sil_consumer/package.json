@@ -4,7 +4,12 @@
   "description": "Kafka Consumers for storing data  to Database",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run prisma:generate && npm run prisma:validate && node server.js",
+    "prisma:generate": "npx prisma generate --schema=./prisma/postgresql/schema.prisma && npx prisma generate --schema=./prisma/mongodb/schema.prisma",
+    "prisma:validate": "npx prisma validate --schema=./prisma/postgresql/schema.prisma && npx prisma validate --schema=./prisma/mongodb/schema.prisma",
+    "prisma:pull:postgresql": "npx prisma db pull --schema=./prisma/postgresql/schema.prisma",
+    "prisma:pull:mongodb": "npx prisma db pull --schema=./prisma/mongodb/schema.prisma"
   },
   "repository": {
     "type": "git",

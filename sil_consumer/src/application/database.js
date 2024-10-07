@@ -1,3 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient as PostgresClient } from "../../prisma/generated/postgresql/index.js";
+import { PrismaClient as MongoClient } from "../../prisma/generated/mongodb/index.js";
 
-export const prismaClient = new PrismaClient({});
+// initialize client
+export const postgresClient = new PostgresClient({});
+export const mongoClient = new MongoClient({});

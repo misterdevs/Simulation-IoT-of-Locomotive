@@ -1,11 +1,11 @@
-import { prismaClient } from "../application/database.js";
+import { postgresClient } from "../application/database.js";
 
 const create = async (data) => {
   // parsing string data from kafka to be json
   data = JSON.parse(data);
   try {
     // insert data to postgresql
-    const response = await prismaClient.locomotive.create({
+    const response = await postgresClient.locomotive.create({
       data: {
         id: data.id,
         code: data.code,
