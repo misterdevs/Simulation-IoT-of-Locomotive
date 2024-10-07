@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.7.17">
   <diagram name="Page-1" id="HEH0be-vvaHjGvdlE3Nt">
-    <mxGraphModel dx="1972" dy="1752" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1854" dy="1773" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -16,7 +16,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="it1YccBrq72vr2STVT6A-71" value="Retrive locomotive data(Dummy)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="it1YccBrq72vr2STVT6A-70">
+        <mxCell id="it1YccBrq72vr2STVT6A-71" value="Retrive locomotive data" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="it1YccBrq72vr2STVT6A-70">
           <mxGeometry x="0.3108" relative="1" as="geometry">
             <mxPoint x="-145" as="offset" />
           </mxGeometry>
@@ -126,10 +126,10 @@
         <mxCell id="it1YccBrq72vr2STVT6A-45" value="Spring Boot&lt;br&gt;(Service)" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="730" y="150" width="100" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="it1YccBrq72vr2STVT6A-48" value="&lt;span style=&quot;font-size: 12px; text-wrap: wrap; background-color: rgb(251, 251, 251);&quot;&gt;Listen for latest locomotive data(Dummy) from scheduler via kafka&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+        <mxCell id="it1YccBrq72vr2STVT6A-48" value="&lt;span style=&quot;font-size: 12px; text-wrap: wrap; background-color: rgb(251, 251, 251);&quot;&gt;Listen for latest locomotive data from scheduler via kafka&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
           <mxGeometry x="650" y="175" as="geometry" />
         </mxCell>
-        <mxCell id="it1YccBrq72vr2STVT6A-51" value="&lt;span style=&quot;font-size: 12px; text-wrap: wrap; background-color: rgb(251, 251, 251);&quot;&gt;Store locomotice summary data to MongoDB via kafka&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+        <mxCell id="it1YccBrq72vr2STVT6A-51" value="&lt;span style=&quot;font-size: 12px; text-wrap: wrap; background-color: rgb(251, 251, 251);&quot;&gt;Store locomotiv&lt;/span&gt;&lt;span style=&quot;background-color: rgb(251, 251, 251); font-size: 12px; text-wrap: wrap;&quot;&gt;e summary data to MongoDB via kafka&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
           <mxGeometry x="570" y="270" as="geometry" />
         </mxCell>
         <mxCell id="it1YccBrq72vr2STVT6A-58" value="Telegram" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.display;whiteSpace=wrap;" vertex="1" parent="1">
