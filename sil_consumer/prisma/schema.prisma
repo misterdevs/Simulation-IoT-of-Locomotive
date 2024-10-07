@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model locomotive {
+  id         String    @id @db.VarChar(255)
+  code       String    @unique @db.VarChar(50)
+  name       String?   @db.VarChar(255)
+  dimension  String?   @db.VarChar(255)
+  status_id  Int?
+  created_at DateTime? @db.Timestamp(6)
+  updated_at DateTime? @db.Timestamp(6)
+  is_deleted Boolean?  @default(false)
+  status     status?   @relation(fields: [status_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model status {
+  id          Int          @id @default(autoincrement())
+  title       String       @unique @db.VarChar(50)
+  description String?      @db.VarChar(500)
+  created_at  DateTime?    @db.Timestamp(6)
+  updated_at  DateTime?    @db.Timestamp(6)
+  is_deleted  Boolean?     @default(false)
+  locomotive  locomotive[]
+}
+
+model subscriber {
+  id         Int       @id @default(autoincrement())
+  chat_id    String    @unique @db.VarChar(255)
+  timeframe  String?   @db.VarChar(10)
+  created_at DateTime? @db.Timestamp(6)
+  updated_at DateTime? @db.Timestamp(6)
+  is_deleted Boolean?  @default(false)
+}
