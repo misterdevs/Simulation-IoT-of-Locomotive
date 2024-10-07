@@ -25,7 +25,7 @@ public class CreateDummyData {
     private Integer[] status = { 1, 2, 3 };
     private String[] type = { "Executive", "Bussiness", "Economy" };
 
-    @Scheduled(fixedDelay = 5000)
+    @Scheduled(fixedDelay = 10000)
     public void scheduler() throws JsonProcessingException {
         Random randomize = new Random();
 

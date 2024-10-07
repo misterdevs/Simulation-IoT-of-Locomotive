@@ -23,7 +23,7 @@ public class Locomotive {
     private String dimension;
     private Integer statusId;
     @Builder.Default
-    private Timestamp createdAt = Timestamp.valueOf(LocalDateTime.now());
+    private String createdAt = LocalDateTime.now().toString();
     private Timestamp updatedAt;
     @Builder.Default
     private Boolean isDeleted = false;
