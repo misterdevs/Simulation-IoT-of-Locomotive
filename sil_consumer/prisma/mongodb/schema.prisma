@@ -10,4 +10,10 @@ datasource db {
 
 model summaryTest {
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  totalLocomotive Int
+  totalOnDuty Int
+  totalOnDepot Int
+  totalUnderMaintenance Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime
 }

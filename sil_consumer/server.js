@@ -1,5 +1,6 @@
 import { Kafka } from "kafkajs";
 import * as locomotive from "./src/service/locomotive.js";
+import * as locomotiveSummary from "./src/service/locomotiveSummary.js";
 
 // kafka initialize
 const kafka = new Kafka({
@@ -37,8 +38,9 @@ const run = async () => {
           // handle locomotive data
           locomotive.create(messageValue);
           break;
-        case topics[0]:
+        case topics[1]:
           //handle locomotive summary data
+          locomotiveSummary.create(messageValue);
           break;
         default:
           console.warn(`Received message from unknown topic: ${topic}`);
