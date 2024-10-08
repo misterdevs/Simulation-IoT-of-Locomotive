@@ -20,4 +20,10 @@ public class KafkaConsumer {
         summaryService.CreateSummary(message);
     }
 
+    @KafkaListener(topics = "locomotive-summary-data-test-topic", groupId = "service")
+    public void listenSummary(String message) throws JsonProcessingException {
+        // System.out.println("Received Message: " + message);
+        summaryService.get24hSummaries(message);
+    }
+
 }
