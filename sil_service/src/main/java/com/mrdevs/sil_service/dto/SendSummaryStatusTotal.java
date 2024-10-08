@@ -1,4 +1,4 @@
-package com.mrdevs.sil_service.model;
+package com.mrdevs.sil_service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class StatusTotal {
+public class SendSummaryStatusTotal {
     private Integer statusId;
     private Integer total;
 }

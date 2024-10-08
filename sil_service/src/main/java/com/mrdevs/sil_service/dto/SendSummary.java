@@ -1,4 +1,4 @@
-package com.mrdevs.sil_service.model;
+package com.mrdevs.sil_service.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,15 +12,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Summary {
-
-    // private Integer totalOnDuty;
-    // private Integer totalOnDepot;
-    // private Integer totalUnderMaintenance;
+public class SendSummary {
     private Integer totalLocomotive;
-    private List<StatusTotal> status;
+    private List<SendSummaryStatusTotal> status;
     @Builder.Default
     private String createdAt = LocalDateTime.now().toString();
     private String updatedAt;
-
 }

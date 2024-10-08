@@ -1,4 +1,4 @@
-package com.mrdevs.sil_service.model;
+package com.mrdevs.sil_service.model.postgresql;
 
 import java.time.LocalDateTime;
 

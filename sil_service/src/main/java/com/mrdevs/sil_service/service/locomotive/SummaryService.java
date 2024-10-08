@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mrdevs.sil_service.model.Status;
-import com.mrdevs.sil_service.model.StatusTotal;
-import com.mrdevs.sil_service.model.Summary;
-import com.mrdevs.sil_service.repository.LocomotiveRepository;
-import com.mrdevs.sil_service.repository.StatusRepository;
+import com.mrdevs.sil_service.dto.SendSummary;
+import com.mrdevs.sil_service.dto.SendSummaryStatusTotal;
+import com.mrdevs.sil_service.model.postgresql.Status;
+import com.mrdevs.sil_service.repository.postgresql.LocomotiveRepository;
+import com.mrdevs.sil_service.repository.postgresql.StatusRepository;
 import com.mrdevs.sil_service.service.kafka.KafkaProducer;
 
 import lombok.RequiredArgsConstructor;
@@ -33,8 +33,8 @@ public class SummaryService {
     public void CreateSummary(String data) throws JsonProcessingException {
 
         try {
-            Summary summary = new Summary();
-            List<StatusTotal> total = new ArrayList<StatusTotal>();
+            SendSummary sendSummary = new SendSummary();
+            List<SendSummaryStatusTotal> total = new ArrayList<SendSummaryStatusTotal>();
             List<Status> statuses = statusRepository.findAll();
 
             // get total of each status
@@ -45,19 +45,19 @@ public class SummaryService {
                 Long locomotiveTotal = locomotiveRepository.countByStatusId(id);
 
                 // adding total to total list
-                total.add(new StatusTotal(statuses.get(i).getId(), locomotiveTotal.intValue()));
+                total.add(new SendSummaryStatusTotal(statuses.get(i).getId(), locomotiveTotal.intValue()));
             }
 
             Long totalLocomotive = locomotiveRepository.count();
 
             // set total locomotive to summary
-            summary.setTotalLocomotive(totalLocomotive.intValue());
+            sendSummary.setTotalLocomotive(totalLocomotive.intValue());
             // set total to summary
-            summary.setStatus(total);
+            sendSummary.setStatus(total);
 
             ObjectMapper objectMapper = new ObjectMapper();
             // convert object class to json string
-            String message = objectMapper.writeValueAsString(summary);
+            String message = objectMapper.writeValueAsString(sendSummary);
 
             // sending dummy data to kafka which later will be stored to mongodb and to
             // consume for another service
