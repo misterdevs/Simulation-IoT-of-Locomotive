@@ -13,7 +13,7 @@ const consumer = kafka.consumer({ groupId: "consumer-nodejs" });
 // topics we need to listen
 const topics = [
   "locomotive-data-test-topic", // need to change after all services running well
-  "locomotive-data-summary-test-topic", // need to change after all services running well
+  "locomotive-summary-data-test-topic", // need to change after all services running well
 ];
 
 const run = async () => {

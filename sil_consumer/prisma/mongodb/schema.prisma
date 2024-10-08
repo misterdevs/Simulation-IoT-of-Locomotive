@@ -8,12 +8,18 @@ datasource db {
   url      = env("MONGODB_URL")
 }
 
-model summaryTest {
+model summaryTests {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   totalLocomotive Int
-  totalOnDuty Int
-  totalOnDepot Int
-  totalUnderMaintenance Int
+  status statusTests[]
   createdAt DateTime @default(now())
   updatedAt DateTime
+}
+
+model statusTests {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  statusId Int
+  total Int
+  summaryTestId String @db.ObjectId
+  summaryTest summaryTests @relation(fields: [summaryTestId], references: [id])
 }
