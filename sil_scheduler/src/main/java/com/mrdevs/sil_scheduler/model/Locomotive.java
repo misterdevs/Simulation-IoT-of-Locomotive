@@ -1,6 +1,5 @@
 package com.mrdevs.sil_scheduler.model;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -24,7 +23,7 @@ public class Locomotive {
     private Integer statusId;
     @Builder.Default
     private String createdAt = LocalDateTime.now().toString();
-    private Timestamp updatedAt;
+    private String updatedAt;
     @Builder.Default
     private Boolean isDeleted = false;
 

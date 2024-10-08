@@ -22,7 +22,7 @@ public class CreateDummyData {
     private KafkaProducer kafkaProducer;
 
     // topic name for locomotive data
-    private String topics = "locomotive-data-test-topic";
+    private String topics = "locomotive-data-test-topic"; // need to change after all services running well
     // static data for randomize data
     private Integer[] status = { 1, 2, 3 }; // 1: On Duty, 2: On Depot, 3: Under Maintenance
     private String[] type = { "Executive", "Bussiness", "Economy" };
