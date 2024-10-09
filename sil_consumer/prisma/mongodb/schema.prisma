@@ -19,6 +19,7 @@ model summaryTests {
 model statusTests {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   statusId Int
+  statusTitle String
   total Int
   summaryTestId String @db.ObjectId
   summaryTest summaryTests @relation(fields: [summaryTestId], references: [id])
