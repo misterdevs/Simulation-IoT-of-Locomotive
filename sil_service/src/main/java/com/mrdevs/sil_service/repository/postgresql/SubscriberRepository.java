@@ -13,6 +13,10 @@ public interface SubscriberRepository extends JpaRepository<Subscriber, Integer>
 
     Optional<Subscriber> findByChatIdAndIsDeletedFalse(String chatId);
 
+    Optional<Subscriber> findByChatId(String chatId);
+
     List<Subscriber> findAllByIsDeletedFalse();
+
+    List<Subscriber> findByTimeframeAndIsDeletedFalse(String timeframe);
 
 }
