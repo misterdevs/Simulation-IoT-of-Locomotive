@@ -86,11 +86,11 @@ public class SummaryService {
 
     }
 
-    public List<SendSummary> get24hSummaries(String data) {
+    public List<SendSummary> get24hSummaries() {
 
         // retrieve 24h summaries
         List<Summary> summaries = summaryRepository
-                .findByCreatedAtAfterOrderByCreatedAtDesc(LocalDateTime.now().minusHours(24));
+                .findByCreatedAtAfterOrderByCreatedAtAsc(LocalDateTime.now().minusHours(24));
 
         // mapping to SendSummary
         List<SendSummary> sendSummary = summaries.stream().map(item -> {

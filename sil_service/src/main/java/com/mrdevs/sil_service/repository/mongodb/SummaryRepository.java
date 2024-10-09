@@ -11,6 +11,6 @@ import com.mrdevs.sil_service.model.mongodb.Summary;
 @Repository
 public interface SummaryRepository extends MongoRepository<Summary, String> {
 
-    List<Summary> findByCreatedAtAfterOrderByCreatedAtDesc(LocalDateTime createdAt);
+    List<Summary> findByCreatedAtAfterOrderByCreatedAtAsc(LocalDateTime createdAt);
 
 }
