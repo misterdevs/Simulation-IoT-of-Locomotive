@@ -3,6 +3,7 @@ package com.mrdevs.sil_service.service.locomotive;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
@@ -84,6 +85,25 @@ public class SummaryService {
         // ReceiveLocomotive receiveLocomotive = mapper.readValue(data,
         // ReceiveLocomotive.class);
         // System.out.println(receiveLocomotive.toString());
+
+    }
+
+    public SendSummary getLatestSummary() {
+
+        // retrieve latest summary
+        Optional<Summary> summaryOptional = summaryRepository.findTopByOrderByCreatedAtDesc();
+        List<StatusDetail> statuses = statusDetailRepository
+                .findBySummaryTestId(new ObjectId(summaryOptional.get().getId()));
+
+        // mapping to SendSummaryStatusTotal
+        List<SendSummaryStatusTotal> statusTotal = statuses.stream()
+                .map(st -> new SendSummaryStatusTotal(st.getStatusId(), st.getStatusTitle(), st.getTotal()))
+                .collect(Collectors.toList());
+
+        Summary summary = summaryOptional.get();
+
+        return SendSummary.builder().totalLocomotive(summary.getTotalLocomotive()).status(statusTotal)
+                .createdAt(summary.getCreatedAt().toString()).updatedAt(summary.getUpdatedAt().toString()).build();
 
     }
 
