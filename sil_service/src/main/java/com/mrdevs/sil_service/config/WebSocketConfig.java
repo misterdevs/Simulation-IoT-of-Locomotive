@@ -13,7 +13,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // Menambahkan endpoint STOMP yang dapat diakses oleh klien
-        registry.addEndpoint("/ws").setAllowedOrigins("http://localhost:8080").withSockJS();
+        registry.addEndpoint("/ws-withSock").setAllowedOriginPatterns("*").withSockJS();
+        registry.addEndpoint("/ws").setAllowedOriginPatterns("*");
     }
 
     @Override
