@@ -54,7 +54,8 @@ public class SummaryService {
                 Long locomotiveTotal = locomotiveRepository.countByStatusId(id);
 
                 // adding total to total list
-                total.add(new SendSummaryStatusTotal(statuses.get(i).getId(), locomotiveTotal.intValue()));
+                total.add(new SendSummaryStatusTotal(statuses.get(i).getId(), statuses.get(i).getTitle(),
+                        locomotiveTotal.intValue()));
             }
 
             Long totalLocomotive = locomotiveRepository.count();
@@ -101,7 +102,7 @@ public class SummaryService {
 
             // mapping to SendSummaryStatusTotal
             List<SendSummaryStatusTotal> statusTotal = statuses.stream()
-                    .map(st -> new SendSummaryStatusTotal(st.getStatusId(), st.getTotal()))
+                    .map(st -> new SendSummaryStatusTotal(st.getStatusId(), st.getStatusTitle(), st.getTotal()))
                     .collect(Collectors.toList());
 
             return SendSummary.builder().totalLocomotive(item.getTotalLocomotive()).status(statusTotal)

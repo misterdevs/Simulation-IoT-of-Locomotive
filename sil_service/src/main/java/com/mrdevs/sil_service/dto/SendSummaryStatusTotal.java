@@ -11,5 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SendSummaryStatusTotal {
     private Integer statusId;
+    private String statusTitle;
     private Integer total;
 }

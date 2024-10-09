@@ -18,6 +18,7 @@ public class StatusDetail {
     @Id
     private String id;
     private Integer statusId;
+    private String statusTitle;
     private Integer total;
     private String summaryTestId;
 
