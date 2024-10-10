@@ -20,6 +20,7 @@ public class KafkaConsumer {
     public void listen(String message) throws JsonProcessingException {
         // System.out.println("Received Message: " + message);
         summaryService.CreateSummary(message);
+        webSocketController.sendLatestLocomotiveData(message);
     }
 
     @KafkaListener(topics = "locomotive-summary-data-test-topic", groupId = "service")
@@ -28,7 +29,7 @@ public class KafkaConsumer {
         // summaryService.get24hSummaries(message);
 
         // sending latest summary data to subscriber /topic/message
-        webSocketController.sendLatestLocomotiveData(message);
+        webSocketController.sendLatestLocomotiveSummaryData(message);
 
     }
 
