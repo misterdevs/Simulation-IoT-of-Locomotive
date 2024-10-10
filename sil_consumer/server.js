@@ -11,10 +11,7 @@ const kafka = new Kafka({
 const consumer = kafka.consumer({ groupId: "consumer-nodejs" });
 
 // topics we need to listen
-const topics = [
-  "locomotive-data-test-topic", // need to change after all services running well
-  "locomotive-summary-data-test-topic", // need to change after all services running well
-];
+const topics = [process.env.KAFKA_TOPICS_1, process.env.KAFKA_TOPICS_2];
 
 const run = async () => {
   await consumer.connect();
