@@ -32,7 +32,7 @@ public class SummaryService {
     private static final Logger logger = LoggerFactory.getLogger(SummaryService.class);
 
     // topic name for locomotive summary data
-    private final String topic = "locomotive-summary-data-test-topic"; // need to change after all services running well
+    private final String topic = "locomotive-summary-data-topic"; // need to change after all services running well
 
     private final LocomotiveRepository locomotiveRepository;
     private final StatusRepository statusRepository;

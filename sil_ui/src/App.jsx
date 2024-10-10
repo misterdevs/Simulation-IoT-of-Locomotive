@@ -138,53 +138,55 @@ function App() {
                 </CardBody>
               </Card>
               <div className="flex-row space-y-3 overflow-scroll h-96">
-                {locomotive.reverse().map((item) => {
-                  return (
-                    <Card rounded={"3xl"} key={item.id}>
-                      <CardBody>
-                        <div className="flex justify-between items-center">
-                          <div className="flex-row">
-                            <div className="flex justify-start items-center space-x-3">
-                              <span
-                                className={`px-2 py-0.5 text-white rounded-full text-xs ${
-                                  item.statusId === 1
-                                    ? "bg-teal-500"
+                {locomotive
+                  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                  .map((item) => {
+                    return (
+                      <Card rounded={"3xl"} key={item.id}>
+                        <CardBody>
+                          <div className="flex justify-between items-center">
+                            <div className="flex-row">
+                              <div className="flex justify-start items-center space-x-3">
+                                <span
+                                  className={`px-2 py-0.5 text-white rounded-full text-xs ${
+                                    item.statusId === 1
+                                      ? "bg-teal-500"
+                                      : item.statusId === 2
+                                      ? "bg-sky-500"
+                                      : item.statusId === 3
+                                      ? "bg-rose-500"
+                                      : "bg-gray-500"
+                                  }`}
+                                >
+                                  {item.statusId === 1
+                                    ? "On Duty"
                                     : item.statusId === 2
-                                    ? "bg-sky-500"
+                                    ? "On Depot"
                                     : item.statusId === 3
-                                    ? "bg-rose-500"
-                                    : "bg-gray-500"
-                                }`}
-                              >
-                                {item.statusId === 1
-                                  ? "On Duty"
-                                  : item.statusId === 2
-                                  ? "On Depot"
-                                  : item.statusId === 3
-                                  ? "Under Maintenance"
-                                  : "Unknown"}
-                              </span>
-                              <span className="px-2 py-0.5 text-gray-500 bg-gray-200 rounded-full text-xs md:hidden">
-                                {item.dimension}
-                              </span>
+                                    ? "Under Maintenance"
+                                    : "Unknown"}
+                                </span>
+                                <span className="px-2 py-0.5 text-gray-500 bg-gray-200 rounded-full text-xs md:hidden">
+                                  {item.dimension}
+                                </span>
+                              </div>
+                              <div className="flex justify-start items-center space-x-3">
+                                <span>{item.name}</span>
+                                <span className="px-2 py-0.5 text-gray-500 bg-gray-200 rounded-full text-xs hidden md:block">
+                                  {item.dimension}
+                                </span>
+                              </div>
                             </div>
-                            <div className="flex justify-start items-center space-x-3">
-                              <span>{item.name}</span>
-                              <span className="px-2 py-0.5 text-gray-500 bg-gray-200 rounded-full text-xs hidden md:block">
-                                {item.dimension}
+                            <div>
+                              <span className="font-bold text-sm">
+                                {convertToTime(item.createdAt)}
                               </span>
                             </div>
                           </div>
-                          <div>
-                            <span className="font-bold text-sm">
-                              {convertToTime(item.createdAt)}
-                            </span>
-                          </div>
-                        </div>
-                      </CardBody>
-                    </Card>
-                  );
-                })}
+                        </CardBody>
+                      </Card>
+                    );
+                  })}
               </div>
             </div>
           </div>
