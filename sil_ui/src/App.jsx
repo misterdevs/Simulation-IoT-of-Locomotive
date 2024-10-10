@@ -116,7 +116,7 @@ function App() {
             </CardInfo>
           </div>
         </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-5 gap-10">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-10">
           <div className="md:col-span-3">
             <Card rounded={"3xl"}>
               <CardBody>
