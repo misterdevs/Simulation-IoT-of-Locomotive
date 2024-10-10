@@ -79,7 +79,7 @@ public class SummaryService {
 
         } catch (Exception e) {
             // logging event
-            logger.info("Summary data failed to create : " + e);
+            logger.error("Summary data failed to create : " + e);
         }
 
         // ReceiveLocomotive receiveLocomotive = mapper.readValue(data,
@@ -102,8 +102,12 @@ public class SummaryService {
 
         Summary summary = summaryOptional.get();
 
-        return SendSummary.builder().totalLocomotive(summary.getTotalLocomotive()).status(statusTotal)
+        SendSummary response = SendSummary.builder().totalLocomotive(summary.getTotalLocomotive()).status(statusTotal)
                 .createdAt(summary.getCreatedAt().toString()).updatedAt(summary.getUpdatedAt().toString()).build();
+
+        logger.info("getLatestSummary :" + response);
+
+        return response;
 
     }
 
@@ -129,6 +133,8 @@ public class SummaryService {
                     .createdAt(item.getCreatedAt().toString()).updatedAt(item.getUpdatedAt().toString()).build();
 
         }).collect(Collectors.toList());
+
+        logger.info("get24hSummaries : " + sendSummary);
 
         return sendSummary;
 

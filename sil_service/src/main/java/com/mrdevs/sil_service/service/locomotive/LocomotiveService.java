@@ -1,10 +1,11 @@
 package com.mrdevs.sil_service.service.locomotive;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.mrdevs.sil_service.dto.ReceiveLocomotive;
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class LocomotiveService {
+    private static final Logger logger = LoggerFactory.getLogger(LocomotiveService.class);
 
     private final LocomotiveRepository locomotiveRepository;
 
@@ -31,6 +33,8 @@ public class LocomotiveService {
                         .statusId(item.getStatusId()).dimension(item.getDimension())
                         .createdAt(item.getCreatedAt().toString()).build())
                 .collect(Collectors.toList());
+
+        logger.info("get24hLocomotives :" + sendLocomotive.toString());
 
         return sendLocomotive;
 
