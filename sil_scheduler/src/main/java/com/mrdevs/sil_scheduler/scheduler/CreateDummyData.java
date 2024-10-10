@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mrdevs.sil_scheduler.model.Locomotive;
+import com.mrdevs.sil_scheduler.dto.Locomotive;
 import com.mrdevs.sil_scheduler.service.kafka.KafkaProducer;
 
 import lombok.extern.slf4j.Slf4j;

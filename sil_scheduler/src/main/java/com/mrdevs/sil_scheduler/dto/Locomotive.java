@@ -1,4 +1,4 @@
-package com.mrdevs.sil_scheduler.model;
+package com.mrdevs.sil_scheduler.dto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
