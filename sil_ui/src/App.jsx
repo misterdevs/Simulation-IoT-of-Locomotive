@@ -21,18 +21,13 @@ function App() {
     underMaintenance: 0,
     createdAt: "",
   });
+  const [locomotive, setLocomotive] = useState([]);
 
   //chart
   const [dataset, setDataset] = useState([]);
-  const labels = getUniqueByCreatedAt(dataset).map((item) => {
-    const now = new Date(item.createdAt);
-
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
-
-    return `${hours}:${minutes}:${seconds}`;
-  });
+  const labels = getUniqueByCreatedAt(dataset).map((item) =>
+    convertToTime(item.createdAt)
+  );
   const datasets = [
     {
       label: "On Duty",
@@ -52,7 +47,7 @@ function App() {
       label: "Under Maintenance",
       data: getUniqueByCreatedAt(dataset).map((item) => item.underMaintenance),
       fill: false,
-      borderColor: "rgb(255, 99, 132)",
+      borderColor: "#be123c",
       tension: 0.1,
     },
   ];
@@ -73,17 +68,24 @@ function App() {
         createdAt: body.createdAt,
       };
       setDataset((prev) => {
-        console.log([...prev, latest]);
         return [...prev, latest];
       });
       return latest;
     });
+  });
+  useSubscription("/topic/messages/locomotive", (message) => {
+    const body = JSON.parse(message.body);
+    setLocomotive((prev) => [...prev, body]);
   });
 
   useEffect(() => {
     if (stompClient) {
       stompClient.publish({
         destination: "/app/subscribe",
+        body: "",
+      });
+      stompClient.publish({
+        destination: "/app/subscribe/locomotive",
         body: "",
       });
     }
@@ -128,11 +130,63 @@ function App() {
               </CardBody>
             </Card>
           </div>
-          <div className="">
-            <div>
-              <span>Locomotive Information</span>
+          <div className="md:col-span-2">
+            <div className="flex-row space-y-5">
+              <Card rounded={"3xl"}>
+                <CardBody>
+                  <span className="">Locomotive Status Information(24h)</span>
+                </CardBody>
+              </Card>
+              <div className="flex-row space-y-3 overflow-scroll h-96">
+                {locomotive.reverse().map((item) => {
+                  return (
+                    <Card rounded={"3xl"} key={item.id}>
+                      <CardBody>
+                        <div className="flex justify-between items-center">
+                          <div className="flex-row">
+                            <div className="flex justify-start items-center space-x-3">
+                              <span
+                                className={`px-2 py-0.5 text-white rounded-full text-xs ${
+                                  item.statusId === 1
+                                    ? "bg-teal-500"
+                                    : item.statusId === 2
+                                    ? "bg-sky-500"
+                                    : item.statusId === 3
+                                    ? "bg-rose-500"
+                                    : "bg-gray-500"
+                                }`}
+                              >
+                                {item.statusId === 1
+                                  ? "On Duty"
+                                  : item.statusId === 2
+                                  ? "On Depot"
+                                  : item.statusId === 3
+                                  ? "Under Maintenance"
+                                  : "Unknown"}
+                              </span>
+                              <span className="px-2 py-0.5 text-gray-500 bg-gray-200 rounded-full text-xs md:hidden">
+                                {item.dimension}
+                              </span>
+                            </div>
+                            <div className="flex justify-start items-center space-x-3">
+                              <span>{item.name}</span>
+                              <span className="px-2 py-0.5 text-gray-500 bg-gray-200 rounded-full text-xs hidden md:block">
+                                {item.dimension}
+                              </span>
+                            </div>
+                          </div>
+                          <div>
+                            <span className="font-bold text-sm">
+                              {convertToTime(item.createdAt)}
+                            </span>
+                          </div>
+                        </div>
+                      </CardBody>
+                    </Card>
+                  );
+                })}
+              </div>
             </div>
-            <div></div>
           </div>
         </div>
       </div>
@@ -153,4 +207,14 @@ const getUniqueByCreatedAt = (arr) => {
     seen.add(date);
     return true;
   });
+};
+
+const convertToTime = (dateTime) => {
+  const now = new Date(dateTime);
+
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
+
+  return `${hours}:${minutes}:${seconds}`;
 };
